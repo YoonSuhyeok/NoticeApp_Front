@@ -1,7 +1,8 @@
 import 'react-native';
 
-import React, { ReactElement } from 'react';
 import { render } from '@testing-library/react-native';
+import React, { ReactElement } from 'react';
+
 import App from '../App';
 
 // let props;

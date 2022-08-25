@@ -1,5 +1,6 @@
-import { View } from 'react-native';
 import React, { useState } from 'react';
+import { View } from 'react-native';
+
 import SearchBar from '../components/searchBar';
 
 function HomeScreen() {

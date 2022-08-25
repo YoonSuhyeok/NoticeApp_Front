@@ -1,5 +1,5 @@
-import { Alert, Button, TextInput, View } from 'react-native';
 import React from 'react';
+import { Alert, Button, TextInput, View } from 'react-native';
 import tw from 'twrnc';
 
 interface Word {
