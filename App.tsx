@@ -8,28 +8,50 @@
  * @format
  */
 
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useCallback } from 'react';
+// react-native-vector-icons/Ionicons otherwise.
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import WebScreen from './page/WebScreen';
+import SelectScreen from './page/SelectScreen';
 import HomeScreen from './page/homeScreen';
 
-const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
 
+const Tab = createBottomTabNavigator();
+
 function App() {
+    const HomeIcon = useCallback(() => <Ionicons name="home" size={30} />, []);
+    const CollegeIcon = useCallback(
+        () => <Ionicons name="add" size={30} />,
+        [],
+    );
+
     return (
         <QueryClientProvider client={queryClient}>
             <NavigationContainer>
-                <Stack.Navigator
-                    screenOptions={{
+                <Tab.Navigator
+                    screenOptions={() => ({
                         headerShown: false,
-                    }}>
-                    <Stack.Screen name="Home" component={HomeScreen} />
-                    <Stack.Screen name="Web" component={WebScreen} />
-                </Stack.Navigator>
+                        unmountOnBlur: true,
+                    })}>
+                    <Tab.Screen
+                        name="Home"
+                        component={HomeScreen}
+                        options={{
+                            tabBarIcon: HomeIcon,
+                        }}
+                    />
+                    <Tab.Screen
+                        name="College"
+                        component={SelectScreen}
+                        options={{
+                            tabBarIcon: CollegeIcon,
+                        }}
+                    />
+                </Tab.Navigator>
             </NavigationContainer>
         </QueryClientProvider>
     );
