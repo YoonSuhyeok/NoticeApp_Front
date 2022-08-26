@@ -9,8 +9,14 @@ async function readNotice() {
     return data;
 }
 
-function useReadNotices() {
-    return useQuery<Array<Notice>>('notices', () => readNotice());
+function useReadNotices(searchWord: string) {
+    return useQuery<Array<Notice>>('notices', () => readNotice(), {
+        select: notices =>
+            notices.filter(
+                notice =>
+                    !(notice.title.match(new RegExp(searchWord, 'i')) === null),
+            ),
+    });
 }
 
 export default useReadNotices;

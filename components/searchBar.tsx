@@ -1,14 +1,13 @@
 import React from 'react';
-import { Alert, Button, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import tw from 'twrnc';
 
 interface WordInterface {
-    word: string;
     setWord: React.Dispatch<React.SetStateAction<string>>;
     styles: string;
 }
 
-function SearchBox({ word, setWord, styles }: WordInterface) {
+function SearchBox({ setWord, styles }: WordInterface) {
     return (
         <View
             style={[
@@ -19,7 +18,6 @@ function SearchBox({ word, setWord, styles }: WordInterface) {
                 placeholder="검색할 키워드를 입력해주세요!!"
                 style={tw`flex-3`}
             />
-            <Button title="검색" onPress={() => Alert.alert(word)} />
         </View>
     );
 }

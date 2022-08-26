@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import useReadNotices from '../api/notice/useReadNotices';
 import NoticeBox from '../components/noticeBox';
@@ -7,28 +7,25 @@ import SearchBar from '../components/searchBar';
 
 function HomeScreen({ navigation }: any) {
     const [searchWord, setSearchWord] = useState<string>('');
-    const { data: notice } = useReadNotices();
+    const { data: notices, isLoading } = useReadNotices(searchWord);
 
     return (
         <View>
-            <SearchBar
-                styles="mt-5"
-                word={searchWord}
-                setWord={setSearchWord}
-            />
-            {notice ? (
+            <SearchBar styles="mt-5" setWord={setSearchWord} />
+            {!isLoading && (
                 <FlatList
-                    data={notice}
+                    data={notices}
+                    keyExtractor={item => item.title}
+                    refreshing={isLoading}
                     renderItem={item => (
                         <NoticeBox
+                            key={item.item.id}
                             title={item.item.title}
                             url={item.item.url}
                             navigation={navigation}
                         />
                     )}
                 />
-            ) : (
-                <Text>공지가 없습니다</Text>
             )}
         </View>
     );
