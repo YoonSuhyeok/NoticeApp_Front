@@ -2,13 +2,13 @@ import React from 'react';
 import { Alert, Button, TextInput, View } from 'react-native';
 import tw from 'twrnc';
 
-interface Word {
+interface WordInterface {
     word: string;
     setWord: React.Dispatch<React.SetStateAction<string>>;
     styles: string;
 }
 
-function SearchBox({ word, setWord, styles }: Word) {
+function SearchBox({ word, setWord, styles }: WordInterface) {
     return (
         <View
             style={[

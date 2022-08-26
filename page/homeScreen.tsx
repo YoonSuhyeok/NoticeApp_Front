@@ -1,38 +1,14 @@
 import React, { useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 
+import useReadNotices from '../api/notice/useReadNotices';
 import NoticeBox from '../components/noticeBox';
 import SearchBar from '../components/searchBar';
 
-const data = [
-    {
-        id: 1,
-        title: '첫번째 공지',
-    },
-    {
-        id: 2,
-        title: '첫번째 공지',
-    },
-    {
-        id: 3,
-        title: '첫번째 공지',
-    },
-    {
-        id: 4,
-        title: '첫번째 공지',
-    },
-    {
-        id: 5,
-        title: '첫번째 공지',
-    },
-    {
-        id: 6,
-        title: '첫번째 공지',
-    },
-];
-
-function HomeScreen() {
+function HomeScreen({ navigation }: any) {
     const [searchWord, setSearchWord] = useState<string>('');
+    const { data: notice } = useReadNotices();
+
     return (
         <View>
             <SearchBar
@@ -40,10 +16,20 @@ function HomeScreen() {
                 word={searchWord}
                 setWord={setSearchWord}
             />
-            <FlatList
-                data={data}
-                renderItem={item => <NoticeBox title={item.item.title} />}
-            />
+            {notice ? (
+                <FlatList
+                    data={notice}
+                    renderItem={item => (
+                        <NoticeBox
+                            title={item.item.title}
+                            url={item.item.url}
+                            navigation={navigation}
+                        />
+                    )}
+                />
+            ) : (
+                <Text>공지가 없습니다</Text>
+            )}
         </View>
     );
 }
