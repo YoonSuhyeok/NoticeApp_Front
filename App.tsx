@@ -18,7 +18,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import SelectScreen from './page/SelectScreen';
 import HomeScreen from './page/homeScreen';
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 const Tab = createBottomTabNavigator();
 
