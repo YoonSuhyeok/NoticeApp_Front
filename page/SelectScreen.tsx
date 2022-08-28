@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 import useReadColleges from '../api/college/useReadColleges';
-import Box from '../components/Box';
+import Box from '../components/box';
 
 function SelectScreen() {
     const { data, isLoading } = useReadColleges();

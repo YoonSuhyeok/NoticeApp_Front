@@ -15,8 +15,8 @@ import React, { useCallback } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import SelectScreen from './page/SelectScreen';
 import HomeScreen from './page/homeScreen';
+import SelectScreen from './page/selectScreen';
 
 export const queryClient = new QueryClient();
 
