@@ -14,8 +14,11 @@ export async function readNotice(page: number, word: string) {
 function useInfiniteReadNotices(page: number, word: string) {
     const queryClient = useQueryClient();
 
-    const totalPage = (queryClient.getQueryData(['notices', 0]) as NoticePage)
-        .totalPages;
+    const zeroPage = queryClient.getQueryData(['notices', 0]) as NoticePage;
+    let totalPage = 0;
+    if (zeroPage !== undefined) {
+        totalPage = zeroPage.totalPages;
+    }
 
     if (page + 1 > totalPage) {
         queryClient.prefetchQuery(['notices', page + 1], () =>
