@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useMemo, useState } from 'react';
-import { ActivityIndicator, FlatList, View } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import tw from 'twrnc';
 
 import useInfiniteReadNotices from '../api/notice/useInfiniteReadNotices';
@@ -47,6 +47,9 @@ function HomeScreen({ navigation }: any) {
 
     return (
         <View>
+            <View style={tw`flex flex-row items-center h-10 bg-sky-400`}>
+                <Text style={tw`text-white ml-2`}>공지도우미</Text>
+            </View>
             <SearchBar
                 styles="mt-5"
                 setWord={setSearchWord}
