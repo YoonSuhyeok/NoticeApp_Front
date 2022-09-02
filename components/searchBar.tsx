@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, TextInput, View } from 'react-native';
+import { TextInput, TouchableOpacity, View } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import tw from 'twrnc';
 
 interface WordInterface {
@@ -18,15 +19,20 @@ function SearchBox({ setWord, styles, fetch, setPage }: WordInterface) {
             <TextInput
                 onChangeText={text => setWord(text)}
                 placeholder="검색할 키워드를 입력해주세요!!"
-                style={tw`flex-3`}
+                style={tw`flex-3 pl-2`}
             />
-            <Button
-                title="검색"
+            <TouchableOpacity
                 onPress={() => {
                     setPage(0);
                     fetch();
-                }}
-            />
+                }}>
+                <Ionicons
+                    style={tw`ml-2`}
+                    name="md-search"
+                    size={24}
+                    color="#5D81FF"
+                />
+            </TouchableOpacity>
         </View>
     );
 }
