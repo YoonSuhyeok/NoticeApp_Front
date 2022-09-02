@@ -25,7 +25,7 @@ const Tab = createBottomTabNavigator();
 function App() {
     const HomeIcon = useCallback(() => <Ionicons name="home" size={30} />, []);
     const CollegeIcon = useCallback(
-        () => <Ionicons name="add" size={30} />,
+        () => <Ionicons name="ios-list" size={30} />,
         [],
     );
 
